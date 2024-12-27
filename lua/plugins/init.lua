@@ -1,4 +1,3 @@
-print "Loading Plugins"
 return {
   {
     "neovim/nvim-lspconfig",
