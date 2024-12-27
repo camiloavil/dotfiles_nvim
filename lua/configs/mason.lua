@@ -1,5 +1,6 @@
 local options = {
   ensure_installed = {
+    "hadolint",
     "black",
     "mypy",
     "pyright",
