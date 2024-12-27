@@ -34,6 +34,3 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
 end)
-
-vim.opt.relativenumber = true -- Habilita numeración relativa
-vim.opt.number = true -- Muestra el número absoluto en la línea actual
