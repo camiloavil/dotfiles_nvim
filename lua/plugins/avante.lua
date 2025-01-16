@@ -4,14 +4,25 @@ return {
   lazy = false,
   version = false, -- set this if you want to always pull the latest change
   opts = {
+    ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "vertex" | "cohere" | "copilot" | string
     provider = "openai",
-    -- add any opts here
+    auto_suggestions_provider = "claude",
+    ---@alias Tokenizer "tiktoken" | "hf"
     openai = {
       model = "gpt-4o-mini",
       max_tokens = 4096,
       -- endpoint = "https://api.openai.com/v1",
       -- timeout = 30000, -- Timeout in milliseconds
       -- temperature = 0,
+    },
+    copilot = {
+      endpoint = "https://api.githubcopilot.com",
+      model = "gpt-4o-2024-08-06",
+      proxy = nil, -- [protocol://]host[:port] Use this proxy
+      allow_insecure = false, -- Allow insecure server connections
+      timeout = 30000, -- Timeout in milliseconds
+      temperature = 0,
+      max_tokens = 4096,
     },
   },
   build = "make",
