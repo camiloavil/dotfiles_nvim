@@ -20,12 +20,12 @@ return {
         name = "Kmi Vault",
         path = "~/Nextcloud/Obsidian/KmiVault",
       },
-      notes_subdir = "notes",
-      new_notes_location = "notes_subdir",
       -- {
       --   name = "work",
       --   path = "~/vaults/work",
       -- },
     },
+    notes_subdir = "notes",
+    new_notes_location = "notes_subdir",
   },
 }
