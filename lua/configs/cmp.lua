@@ -7,13 +7,32 @@ local M = {}
 
 function M.setup()
   cmp.setup {
-    window = {
-      completion = {
-        border = "rounded",
+    mapping = {
+      ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+      ["<C-f>"] = cmp.mapping.scroll_docs(4),
+      ["<C-e>"] = cmp.mapping.abort(),
+      ["<c-space>"] = cmp.mapping.complete(),
+      ["<C-n>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        elseif luasnip.choice_active() then
+          luasnip.change_choice(1)
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
+      ["<C-p>"] = cmp.mapping.select_prev_item(),
+      -- ["<C-y>"] = cmp.mapping.confirm {
+      ["<CR>"] = cmp.mapping.confirm {
+        behavior = cmp.ConfirmBehavior.Insert,
+        select = true,
       },
-      documentation = {
-        border = "rounded",
-      },
+    },
+    sources = {
+      { name = "nvim_lsp" },
+      { name = "path" },
+      { name = "luasnip" },
+      { name = "buffer" },
     },
     formatting = {
       format = function(entry, vim_item)
@@ -78,32 +97,6 @@ function M.setup()
       expand = function(args)
         luasnip.lsp_expand(args.body)
       end,
-    },
-    mapping = {
-      ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-      ["<C-f>"] = cmp.mapping.scroll_docs(4),
-      ["<C-e>"] = cmp.mapping.abort(),
-      ["<C-n>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item()
-        elseif luasnip.choice_active() then
-          luasnip.change_choice(1)
-        else
-          fallback()
-        end
-      end, { "i", "s" }),
-      ["<C-p>"] = cmp.mapping.select_prev_item(),
-      ["<C-y>"] = cmp.mapping.confirm {
-        behavior = cmp.ConfirmBehavior.Insert,
-        select = true,
-      },
-      ["<c-space>"] = cmp.mapping.complete(),
-    },
-    sources = {
-      { name = "nvim_lsp" },
-      { name = "path" },
-      { name = "luasnip" },
-      { name = "buffer" },
     },
   }
 
