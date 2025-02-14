@@ -14,18 +14,5 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
-  opts = {
-    workspaces = {
-      {
-        name = "Kmi Vault",
-        path = "~/Nextcloud/Obsidian/KmiVault",
-      },
-      -- {
-      --   name = "work",
-      --   path = "~/vaults/work",
-      -- },
-    },
-    notes_subdir = "notes",
-    new_notes_location = "notes_subdir",
-  },
+  opts = require "configs/obsidian",
 }
